@@ -11,9 +11,10 @@ public extension Array {
     /// Accesses the element at the specified position safely.
     /// - Parameter index: The position of the element to access safely.
     @inlinable subscript(safe index: Index) -> Element? {
-        if index >= startIndex && index < endIndex {
-            return self[index]
+        guard index >= startIndex && index < endIndex else {
+            return nil
         }
-        return nil
+        
+        return self[index]
     }
 }
