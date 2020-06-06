@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     var red: CGFloat {
         var red: CGFloat = 0
         getRed(&red, green: nil, blue: nil, alpha: nil)

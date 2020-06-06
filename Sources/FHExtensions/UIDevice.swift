@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIDevice {
+public extension UIDevice {
     /// Returns the model identifier of the current device.
     var modelIdentifier: String {
         #if targetEnvironment(macCatalyst)
