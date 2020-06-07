@@ -28,24 +28,6 @@ public extension CGRect {
         }
     }
     
-    var width: CGFloat {
-        get {
-            return self.size.width
-        }
-        set {
-            self = CGRect(x: self.x, y: self.y, width: newValue, height: self.height)
-        }
-    }
-    
-    var height: CGFloat {
-        get {
-            return self.size.height
-        }
-        set {
-            self = CGRect(x: self.x, y: self.y, width: self.width, height: newValue)
-        }
-    }
-    
     var top: CGFloat {
         get {
             return self.origin.y
