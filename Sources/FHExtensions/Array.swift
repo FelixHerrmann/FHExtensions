@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by FHRApps on 06.06.20.
-//
-
 import Foundation
 
 public extension Array {

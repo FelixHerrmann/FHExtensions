@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by FHRApps on 06.06.20.
-//
-
 #if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
 
 import UIKit
