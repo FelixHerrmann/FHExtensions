@@ -3,6 +3,8 @@
 import UIKit
 
 public extension CGRect {
+    
+    /// The x-coordinate of the rectangle’s origin.
     var x: CGFloat {
         get {
             return self.origin.x
@@ -12,6 +14,7 @@ public extension CGRect {
         }
     }
     
+    /// The y-coordinate of the rectangle’s origin.
     var y: CGFloat {
         get {
             return self.origin.y
@@ -21,6 +24,7 @@ public extension CGRect {
         }
     }
     
+    /// The top-coordinate of the rectangle’s origin.
     var top: CGFloat {
         get {
             return self.origin.y
@@ -30,6 +34,7 @@ public extension CGRect {
         }
     }
     
+    /// The bottom-coordinate of the rectangle’s origin.
     var bottom: CGFloat {
         get {
             return self.origin.y + self.size.height
@@ -39,6 +44,7 @@ public extension CGRect {
         }
     }
     
+    /// The left-coordinate of the rectangle’s origin.
     var left: CGFloat {
         get {
             return self.origin.x
@@ -48,6 +54,7 @@ public extension CGRect {
         }
     }
     
+    /// The right-coordinate of the rectangle’s origin.
     var right: CGFloat {
         get {
             return x + width
@@ -57,6 +64,7 @@ public extension CGRect {
         }
     }
     
+    /// The midX-coordinate of the rectangle’s origin.
     var midX: CGFloat {
         get {
             return self.x + self.width / 2
@@ -66,6 +74,7 @@ public extension CGRect {
         }
     }
     
+    /// The midY-coordinate of the rectangle’s origin.
     var midY: CGFloat {
         get {
             return self.y + self.height / 2
@@ -75,6 +84,7 @@ public extension CGRect {
         }
     }
     
+    /// The center-coordinate of the rectangle’s origin.
     var center: CGPoint {
         get {
             return CGPoint(x: self.midX, y: self.midY)
