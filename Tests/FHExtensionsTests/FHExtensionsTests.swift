@@ -28,6 +28,28 @@ final class FHExtensionsTests: XCTestCase {
         XCTAssertEqual(components.year, 1999)
     }
     
+    func testDateEncodingDecodingStrategy() {
+        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0) else { return }
+        
+        if #available(iOS 11.0, *) {
+            let encoder = JSONEncoder()
+            let decoder = JSONDecoder()
+            
+            encoder.dateEncodingStrategy = .iso8601withFractionalSeconds
+            decoder.dateDecodingStrategy = .iso8601withFractionalSeconds
+            
+            guard let data = try? encoder.encode(date) else { return }
+            
+            if let dateString = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? String {
+                XCTAssertEqual(dateString, "1999-02-23T08:41:00.000Z")
+            }
+            
+            if let decodedDate = try? decoder.decode(Date.self, from: data) {
+                XCTAssertEqual(decodedDate, date)
+            }
+        }
+    }
+    
     func testRGBColors() {
         #if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
         let color = UIColor(red: 10/255, green: 20/255, blue: 30/255, alpha: 0.5)
@@ -48,6 +70,7 @@ final class FHExtensionsTests: XCTestCase {
     static var allTests = [
         ("arraySafe", testArraySafe),
         ("dateInit", testDateInit),
+        ("dateEncodingDecodingStrategy", testDateEncodingDecodingStrategy),
         ("rgbColors", testRGBColors),
         ("modelIdentifier", testModelIdentifier)
     ]
