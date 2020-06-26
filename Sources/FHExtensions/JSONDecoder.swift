@@ -1,5 +1,6 @@
 import Foundation
 
+@available(OSX 10.13, *)
 @available(iOS 11.0, *)
 public extension JSONDecoder.DateDecodingStrategy {
     

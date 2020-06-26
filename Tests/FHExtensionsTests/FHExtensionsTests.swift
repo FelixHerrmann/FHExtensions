@@ -31,7 +31,7 @@ final class FHExtensionsTests: XCTestCase {
     func testDateEncodingDecodingStrategy() {
         guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0) else { return }
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, *), #available(OSX 10.13, *) {
             let encoder = JSONEncoder()
             let decoder = JSONDecoder()
             
