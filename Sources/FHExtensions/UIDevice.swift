@@ -1,4 +1,4 @@
-#if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
+#if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
 
 import UIKit
 

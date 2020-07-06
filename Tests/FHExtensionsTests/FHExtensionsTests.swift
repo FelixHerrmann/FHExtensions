@@ -1,7 +1,7 @@
 import XCTest
 @testable import FHExtensions
 
-#if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
+#if canImport(UIKit)
 import UIKit
 #endif
 
@@ -31,7 +31,7 @@ final class FHExtensionsTests: XCTestCase {
     func testDateEncodingDecodingStrategy() {
         guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0) else { return }
         
-        if #available(iOS 11.0, *), #available(OSX 10.13, *) {
+        if #available(OSX 10.13, iOS 11.0, tvOS 11.0, *) {
             let encoder = JSONEncoder()
             let decoder = JSONDecoder()
             
@@ -51,7 +51,7 @@ final class FHExtensionsTests: XCTestCase {
     }
     
     func testRGBColors() {
-        #if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
+        #if canImport(UIKit)
         let color = UIColor(red: 10/255, green: 20/255, blue: 30/255, alpha: 0.5)
         
         XCTAssertEqual(color.red, 10/255)
@@ -62,7 +62,7 @@ final class FHExtensionsTests: XCTestCase {
     }
     
     func testModelIdentifier() {
-        #if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
+        #if canImport(UIKit)
         XCTAssertNotNil(UIDevice.current.modelIdentifier, "Found model identifier")
         #endif
     }

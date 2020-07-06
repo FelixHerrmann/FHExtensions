@@ -1,5 +1,4 @@
-#if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
-
+#if canImport(UIKit)
 import UIKit
 
 public extension UIColor {

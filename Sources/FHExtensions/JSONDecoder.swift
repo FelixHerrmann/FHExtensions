@@ -1,7 +1,6 @@
 import Foundation
 
-@available(OSX 10.13, *)
-@available(iOS 11.0, *)
+@available(OSX 10.13, iOS 11.0, tvOS 11.0, *)
 public extension JSONDecoder.DateDecodingStrategy {
     
     /// The strategy that formats dates according to the ISO 8601 standard with fractional seconds.
