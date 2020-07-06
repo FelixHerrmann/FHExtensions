@@ -72,7 +72,7 @@ public struct CodableUserDefault<T: Codable> {
                 let value = try PropertyListDecoder().decode(T.self, from: data)
                 return value
             } catch {
-                if #available(OSX 10.12, *) {
+                if #available(iOS 10.0, *), #available(OSX 10.12, *) {
                     os_log("Error: %@", log: OSLog(subsystem: "com.felixherrmann.FHExtensions", category: "CodableUserDefault"), type: .error, String(describing: error))
                 } else {
                     NSLog("Error: %@", String(describing: error))
@@ -84,7 +84,7 @@ public struct CodableUserDefault<T: Codable> {
             do {
                 UserDefaults.standard.set(try PropertyListEncoder().encode(newValue), forKey: key)
             } catch {
-                if #available(OSX 10.12, *) {
+                if #available(iOS 10.0, *), #available(OSX 10.12, *) {
                     os_log("Error: %@", log: OSLog(subsystem: "com.felixherrmann.FHExtensions", category: "CodableUserDefault"), type: .error, String(describing: error))
                 } else {
                     NSLog("Error: %@", String(describing: error))
