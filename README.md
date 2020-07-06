@@ -120,8 +120,7 @@ With `UIDevice.current.modelIdentifier` you are able to get the model identifier
 A property wrapper which stores the wrapped value in the `UserDefaults`.
 
 ```swift
-@UserDefault("test", defaultValue: [])
-var test: [String]
+@UserDefault("test") var test: [String]?
 ```
 
 > The wrapped value must be of type `UserDefaultType`.
@@ -136,8 +135,7 @@ struct TestType: Codable {
     let name: String
 }
 
-@CodableUserDefault("test", defaultValue: TestType(name: "test"))
-var test: TestType
+@CodableUserDefault("test") var test: TestType?
 ```
 
 ## License

@@ -34,16 +34,14 @@ extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDef
 @propertyWrapper
 public struct UserDefault<T: UserDefaultType> {
     public let key: String
-    public let defaultValue: T
     
-    public init(_ key: String, defaultValue: T) {
+    public init(_ key: String) {
         self.key = key
-        self.defaultValue = defaultValue
     }
     
-    public var wrappedValue: T {
+    public var wrappedValue: T? {
         get {
-            return UserDefaults.standard.value(forKey: key) as? T ?? defaultValue
+            return UserDefaults.standard.value(forKey: key) as? T
         }
         set {
             UserDefaults.standard.set(newValue, forKey: key)
@@ -57,16 +55,14 @@ public struct UserDefault<T: UserDefaultType> {
 @propertyWrapper
 public struct CodableUserDefault<T: Codable> {
     public let key: String
-    public let defaultValue: T
     
-    public init(_ key: String, defaultValue: T) {
+    public init(_ key: String, defaultValue: T?) {
         self.key = key
-        self.defaultValue = defaultValue
     }
     
-    public var wrappedValue: T {
+    public var wrappedValue: T? {
         get {
-            guard let data = UserDefaults.standard.value(forKey: key) as? Data else { return defaultValue }
+            guard let data = UserDefaults.standard.value(forKey: key) as? Data else { return nil }
             
             do {
                 let value = try PropertyListDecoder().decode(T.self, from: data)
@@ -77,7 +73,7 @@ public struct CodableUserDefault<T: Codable> {
                 } else {
                     NSLog("Error: %@", String(describing: error))
                 }
-                return defaultValue
+                return nil
             }
         }
         set {

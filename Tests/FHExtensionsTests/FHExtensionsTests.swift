@@ -67,11 +67,22 @@ final class FHExtensionsTests: XCTestCase {
         #endif
     }
     
+    @UserDefault("test") var test: String?
+    
+    func testUserDefault() {
+        print("TEST: \(test)")
+        test = "test"
+        print("TEST: \(test)")
+        test = nil
+        print("TEST: \(test)")
+    }
+    
     static var allTests = [
         ("arraySafe", testArraySafe),
         ("dateInit", testDateInit),
         ("dateEncodingDecodingStrategy", testDateEncodingDecodingStrategy),
         ("rgbColors", testRGBColors),
-        ("modelIdentifier", testModelIdentifier)
+        ("modelIdentifier", testModelIdentifier),
+        ("userDefault", testUserDefault)
     ]
 }
