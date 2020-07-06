@@ -10,6 +10,11 @@ Some usefull Foundation and UIKit Extensions.
 
 >Will be expanded over time.
 
+## Requirements
+- macOS 10.10+
+- iOS 8.0+
+- tvOS 9.0+
+
 ## Installation
 
 ### [Swift Package Manager](https://swift.org/package-manager/)
@@ -26,7 +31,7 @@ Download the files in the [Sources](https://github.com/FelixHerrmann/FHExtension
 
 ## Usage
 
-### `Array`
+### [`Array`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Array.swift)
 
 #### `subscript(safe index: Index) -> Element?`
 
@@ -60,7 +65,7 @@ array[safe: 3] = 4
 print(array) // [0, 1, 3]
 ```
 
-### `CGRect`
+### [`CGRect`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
 
 #### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `midX`, `midY`, `center`
 
@@ -68,7 +73,7 @@ Convenience properties for `CGRect` coordinates.
 
 >These properties also contains setters which will recreate the frame entirely.
 
-### `Date`
+### [`Date`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Date.swift)
 
 #### `init?(_:_:_:hour:minute:second)`
 
@@ -81,19 +86,59 @@ let dateWithTime = Date(23, 2, 1999, hour: 9, minute: 41, second: 0)
 
 >The time values are optional.
 
-### `UIColor`
+
+### [`JSONDecoder`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONDecoder.swift)
+
+#### `DateDecodingStrategy.iso8601withFractionalSeconds`
+
+An ISO 8601 `DateDecodingStrategy` with fractional seconds.
+Something like `1999-02-23T08:41:00.000Z` will work with the decoder.
+
+### [`JSONEncoder`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONEncoder.swift)
+
+#### `DateEncodingStrategy.iso8601withFractionalSeconds`
+
+An ISO 8601 `DateEncodingStrategy` with fractional seconds.
+Something like `1999-02-23T08:41:00.000Z` will be the output from the encoder.
+
+### [`UIColor`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIColor.swift)
 
 #### RGB: `red`, `green`, `blue`, `alpha`
 
 These properties are based on the `getRed(_:green:blue:alpha)` method.
 
-### `UIDevice`
+### [`UIDevice`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDevice.swift)
 
 #### `modelIdentifier`
 
 With `UIDevice.current.modelIdentifier` you are able to get the model identifier of the current device as `String`.
 
 >This works also on Mac (Catalyst).
+
+### [`UserDefault`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
+
+A property wrapper which stores the wrapped value in the `UserDefaults`.
+
+```swift
+@UserDefault("test", defaultValue: [])
+var test: [String]
+```
+
+> The wrapped value must be of type `UserDefaultType`.
+For every other type use the `CodableUserDefault` wrapper.
+
+#### CodableUserDefault
+
+This property wrapper works exactly like the `UserDefault` one but accepts any type that conforms to the `Codable` protocol.
+
+```swift
+struct TestType: Codable {
+    let name: String
+}
+
+@CodableUserDefault("test", defaultValue: TestType(name: "test"))
+var test: TestType
+```
 
 ## License
 
