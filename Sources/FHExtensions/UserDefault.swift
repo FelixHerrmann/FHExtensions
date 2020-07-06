@@ -31,8 +31,7 @@ extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDef
 ///
 /// The wrapped value must be of type `UserDefaultType`.
 /// For every other type use the `CodableUserDefault` wrapper.
-@propertyWrapper
-public struct UserDefault<T: UserDefaultType> {
+@propertyWrapper public struct UserDefault<T: UserDefaultType> {
     public let key: String
     
     public init(_ key: String) {
@@ -52,8 +51,7 @@ public struct UserDefault<T: UserDefaultType> {
 /// Property Wrapper which stores the wrapped value in the `UserDefaults`.
 ///
 /// The wrapped value must be of type `Codable`.
-@propertyWrapper
-public struct CodableUserDefault<T: Codable> {
+@propertyWrapper public struct CodableUserDefault<T: Codable> {
     public let key: String
     
     public init(_ key: String, defaultValue: T?) {
