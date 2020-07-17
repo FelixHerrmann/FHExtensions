@@ -54,7 +54,7 @@ extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDef
 @propertyWrapper public struct CodableUserDefault<T: Codable> {
     public let key: String
     
-    public init(_ key: String, defaultValue: T?) {
+    public init(_ key: String) {
         self.key = key
     }
     
