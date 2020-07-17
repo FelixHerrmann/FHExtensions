@@ -67,14 +67,19 @@ final class FHExtensionsTests: XCTestCase {
         #endif
     }
     
-    @UserDefault("test") var test: String?
+    
+    @UserDefault("test", defaultValue: "") var test
+    @UserDefault("testOptional", defaultValue: nil) var testOptional: String?
     
     func testUserDefault() {
-        print("TEST: \(test)")
+        XCTAssertEqual(test, "")
+        XCTAssertEqual(testOptional, nil)
+        
         test = "test"
-        print("TEST: \(test)")
-        test = nil
-        print("TEST: \(test)")
+        testOptional = "test"
+        
+        XCTAssertEqual(test, "test")
+        XCTAssertEqual(testOptional, Optional<String>("test"))
     }
     
     static var allTests = [

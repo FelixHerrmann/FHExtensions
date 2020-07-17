@@ -14,6 +14,7 @@ import os.log
 /// * `Data`
 /// * `Array<UserDefaultType>`
 /// * `Dictionary<UserDefaultType, UserDefaultType>`
+/// * `Optional<UserDefaultType>`
 public protocol UserDefaultType { }
 
 extension Bool: UserDefaultType { }
@@ -26,21 +27,24 @@ extension URL: UserDefaultType { }
 extension Data: UserDefaultType { }
 extension Array: UserDefaultType where Element: UserDefaultType { }
 extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDefaultType { }
+extension Optional: UserDefaultType where Wrapped: UserDefaultType { }
 
 /// Property Wrapper which stores the wrapped value in the `UserDefaults`.
 ///
 /// The wrapped value must be of type `UserDefaultType`.
 /// For every other type use the `CodableUserDefault` wrapper.
-@propertyWrapper public struct UserDefault<T: UserDefaultType> {
+@propertyWrapper public struct UserDefault<T> where T: UserDefaultType {
     public let key: String
+    public let defaultValue: T
     
-    public init(_ key: String) {
+    public init(_ key: String, defaultValue: T) {
         self.key = key
+        self.defaultValue = defaultValue
     }
     
-    public var wrappedValue: T? {
+    public var wrappedValue: T {
         get {
-            return UserDefaults.standard.value(forKey: key) as? T
+            return UserDefaults.standard.value(forKey: key) as? T ?? defaultValue
         }
         set {
             UserDefaults.standard.set(newValue, forKey: key)
@@ -51,16 +55,18 @@ extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDef
 /// Property Wrapper which stores the wrapped value in the `UserDefaults`.
 ///
 /// The wrapped value must be of type `Codable`.
-@propertyWrapper public struct CodableUserDefault<T: Codable> {
+@propertyWrapper public struct CodableUserDefault<T> where T: Codable {
     public let key: String
+    public let defaultValue: T
     
-    public init(_ key: String) {
+    public init(_ key: String, defaultValue: T) {
         self.key = key
+        self.defaultValue = defaultValue
     }
     
-    public var wrappedValue: T? {
+    public var wrappedValue: T {
         get {
-            guard let data = UserDefaults.standard.value(forKey: key) as? Data else { return nil }
+            guard let data = UserDefaults.standard.value(forKey: key) as? Data else { return defaultValue }
             
             do {
                 let value = try PropertyListDecoder().decode(T.self, from: data)
@@ -71,7 +77,7 @@ extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDef
                 } else {
                     NSLog("Error: %@", String(describing: error))
                 }
-                return nil
+                return defaultValue
             }
         }
         set {
