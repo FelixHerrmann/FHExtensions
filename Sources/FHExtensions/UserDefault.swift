@@ -31,7 +31,6 @@ extension UInt32: UserDefaultType { }
 extension UInt64: UserDefaultType { }
 extension Float: UserDefaultType { }
 extension Double: UserDefaultType { }
-extension Float80: UserDefaultType { }
 extension NSString: UserDefaultType { }
 extension String: UserDefaultType { }
 extension NSDate: UserDefaultType { }
@@ -42,6 +41,10 @@ extension NSData: UserDefaultType { }
 extension Data: UserDefaultType { }
 extension Array: UserDefaultType where Element: UserDefaultType { }
 extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDefaultType { }
+
+#if os(macOS)
+extension Float80: UserDefaultType { }
+#endif
 
 /// Property Wrapper which stores the wrapped value in the `UserDefaults`.
 ///
