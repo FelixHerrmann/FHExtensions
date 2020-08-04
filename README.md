@@ -115,6 +115,16 @@ With `UIDevice.current.modelIdentifier` you are able to get the model identifier
 
 >This works also on Mac (Catalyst).
 
+### [`UIDirectionalPanGestureRecognizer`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDirectionalPanGestureRecognizer.swift)
+
+A concrete subclass of UIPanGestureRecognizer that looks for panning (dragging) gestures in the setted direction.
+
+```swift
+let directionalPanRecognizer = UIDirectionalPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+directionalPanRecognizer.direction = .vertical
+view.addGestureRecognizer(directionalPanRecognizer)
+```
+
 ### [`UserDefault`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
 
 A property wrapper which stores the wrapped value in the `UserDefaults`.
