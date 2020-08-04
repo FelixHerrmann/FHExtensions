@@ -19,7 +19,7 @@ public class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
         super.touchesMoved(touches, with: event)
         
         if state == .began {
-            let velocity = velocity(in: view)
+            let velocity = self.velocity(in: view)
             switch direction {
             case .horizontal where abs(velocity.y) > abs(velocity.x):
                 state = .cancelled
