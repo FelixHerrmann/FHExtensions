@@ -22,7 +22,7 @@ Some usefull Foundation and UIKit Extensions.
 Add the following to the dependencies of your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/FelixHerrmann/FHExtensions", from: "x.x.x")
+.package(url: "https://github.com/FelixHerrmann/FHExtensions.git", from: "x.x.x")
 ```
 
 ### Manual
