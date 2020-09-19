@@ -12,7 +12,7 @@ Some usefull Foundation and UIKit Extensions.
 
 ## Requirements
 - macOS 10.10+
-- iOS 8.0+
+- iOS 9.0+
 - tvOS 9.0+
 
 ## Installation
