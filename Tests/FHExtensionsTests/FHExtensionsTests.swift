@@ -61,6 +61,21 @@ final class FHExtensionsTests: XCTestCase {
         #endif
     }
     
+    func testHexColor() {
+        #if canImport(UIKit)
+        guard let color = UIColor(hex: "#80ff00ff") else { return }
+        
+        XCTAssertEqual(color.red, 0.5, accuracy: 0.01)
+        XCTAssertEqual(color.green, 1, accuracy: 0.01)
+        XCTAssertEqual(color.blue, 0, accuracy: 0.01)
+        XCTAssertEqual(color.alpha, 1, accuracy: 0.01)
+        
+        XCTAssertNil(UIColor(hex: "80ff00ff"))
+        XCTAssertNil(UIColor(hex: "#80ff00f"))
+        XCTAssertNil(UIColor(hex: "#80ff00fff"))
+        #endif
+    }
+    
     func testModelIdentifier() {
         #if canImport(UIKit)
         XCTAssertNotNil(UIDevice.current.modelIdentifier, "Found model identifier")
@@ -90,6 +105,7 @@ final class FHExtensionsTests: XCTestCase {
         ("dateInit", testDateInit),
         ("dateEncodingDecodingStrategy", testDateEncodingDecodingStrategy),
         ("rgbColors", testRGBColors),
+        ("hexColor", testHexColor),
         ("modelIdentifier", testModelIdentifier),
         ("userDefault", testUserDefault)
     ]
