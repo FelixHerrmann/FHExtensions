@@ -31,7 +31,7 @@ Download the files in the [Sources](https://github.com/FelixHerrmann/FHExtension
 
 ## Usage
 
-### [`Array`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Array.swift)
+### [Array](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Array.swift)
 
 #### `subscript(safe index: Index) -> Element?`
 
@@ -65,7 +65,8 @@ array[safe: 3] = 4
 print(array) // [0, 1, 3]
 ```
 
-### [`CGRect`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
+
+### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
 
 #### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `midX`, `midY`, `center`
 
@@ -73,7 +74,8 @@ Convenience properties for `CGRect` coordinates.
 
 >These properties also contains setters which will recreate the frame entirely.
 
-### [`Date`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Date.swift)
+
+### [Date](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Date.swift)
 
 #### `init?(_:_:_:hour:minute:second)`
 
@@ -87,27 +89,38 @@ let dateWithTime = Date(23, 2, 1999, hour: 9, minute: 41, second: 0)
 >The time values are optional.
 
 
-### [`JSONDecoder`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONDecoder.swift)
+### [JSONDecoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONDecoder.swift)
 
 #### `DateDecodingStrategy.iso8601withFractionalSeconds`
 
 An ISO 8601 `DateDecodingStrategy` with fractional seconds.
 Something like `1999-02-23T08:41:00.000Z` will work with the decoder.
 
-### [`JSONEncoder`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONEncoder.swift)
+
+### [JSONEncoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONEncoder.swift)
 
 #### `DateEncodingStrategy.iso8601withFractionalSeconds`
 
 An ISO 8601 `DateEncodingStrategy` with fractional seconds.
 Something like `1999-02-23T08:41:00.000Z` will be the output from the encoder.
 
-### [`UIColor`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIColor.swift)
+
+### [UIColor](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIColor.swift)
 
 #### RGB: `red`, `green`, `blue`, `alpha`
 
 These properties are based on the `getRed(_:green:blue:alpha)` method.
 
-### [`UIDevice`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDevice.swift)
+#### `init?(hex:)`
+
+This initializer can create a `UIColor` object by a hex string. It can fail if the string has not the correct format (RGBA).
+
+```swift
+let yellow = UIColor(hex: "#ffff00ff")
+```
+
+
+### [UIDevice](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDevice.swift)
 
 #### `modelIdentifier`
 
@@ -115,7 +128,8 @@ With `UIDevice.current.modelIdentifier` you are able to get the model identifier
 
 >This works also on Mac (Catalyst).
 
-### [`UIDirectionalPanGestureRecognizer`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDirectionalPanGestureRecognizer.swift)
+
+### [UIDirectionalPanGestureRecognizer](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDirectionalPanGestureRecognizer.swift)
 
 A concrete subclass of UIPanGestureRecognizer that looks for panning (dragging) gestures in the setted direction.
 
@@ -125,7 +139,8 @@ directionalPanRecognizer.direction = .vertical
 view.addGestureRecognizer(directionalPanRecognizer)
 ```
 
-### [`UserDefault`](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
+
+### [UserDefault](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
 
 A property wrapper which stores the wrapped value in the `UserDefaults`.
 
