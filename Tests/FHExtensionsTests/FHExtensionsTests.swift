@@ -50,6 +50,13 @@ final class FHExtensionsTests: XCTestCase {
         }
     }
     
+    func testCapitalizeString() {
+        let string = "test string"
+        
+        XCTAssertEqual("Test string", string.capitalizedFirst)
+        XCTAssertNotEqual("Test String", string.capitalizedFirst)
+    }
+    
     func testRGBColors() {
         #if canImport(UIKit)
         let color = UIColor(red: 10/255, green: 20/255, blue: 30/255, alpha: 0.5)

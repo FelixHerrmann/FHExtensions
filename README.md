@@ -105,6 +105,13 @@ An ISO 8601 `DateEncodingStrategy` with fractional seconds.
 Something like `1999-02-23T08:41:00.000Z` will be the output from the encoder.
 
 
+### [String](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/String.swift)
+
+#### `capitalizedFirst`
+
+A copy of the string where the first letter is capitalized.
+
+
 ### [UIColor](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIColor.swift)
 
 #### RGB: `red`, `green`, `blue`, `alpha`
