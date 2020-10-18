@@ -98,7 +98,7 @@ public extension UIColor {
     /// ```swift
     /// let yellow = UIColor(red: 1, green: 1, blue: 0, alpha: 1)
     /// let hexString: String = yellow.createHex(alpha: true)
-    /// print(hexString) // "##ffff00ff"
+    /// print(hexString) // "#ffff00ff"
     /// ```
     ///
     /// - Parameters:
