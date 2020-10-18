@@ -120,10 +120,21 @@ These properties are based on the `getRed(_:green:blue:alpha)` method.
 
 #### `init?(hex:)`
 
-This initializer can create a `UIColor` object by a hex string. It can fail if the string has not the correct format (RGBA).
+This initializer can create a `UIColor` object by a hex string. It can fail if the string has not the correct format.
+It allows hex strings with and without alpha, the hash symbol is not required and capitalization does not matter.
 
 ```swift
-let yellow = UIColor(hex: "#ffff00ff")
+let yellow: UIColor? = UIColor(hex: "#ffff00ff")
+```
+
+#### `createHex(alpha:hashSymbol:)`
+
+This method creates a hex string from the color instance.
+
+```swift
+let yellow = UIColor(red: 1, green: 1, blue: 0, alpha: 1)
+let hexString: String = yellow.createHex(alpha: true)
+print(hexString) // "##ffff00ff"
 ```
 
 
