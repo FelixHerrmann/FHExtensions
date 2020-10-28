@@ -70,7 +70,7 @@ print(array) // [0, 1, 3]
 
 #### `versionNumber`, `buildNumber`
 
-The values for the `CFBundleShortVersionString` and `CFBundleVersion` key in the infor dictionary.
+The values for the `CFBundleShortVersionString` and `CFBundleVersion` key in the info dictionary.
 
 
 ### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
