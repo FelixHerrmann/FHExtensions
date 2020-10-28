@@ -66,6 +66,13 @@ print(array) // [0, 1, 3]
 ```
 
 
+### [Bundle](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Bundle.swift)
+
+#### `versionNumber`, `buildNumber`
+
+The values for the `CFBundleShortVersionString` and `CFBundleVersion` key in the infor dictionary.
+
+
 ### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
 
 #### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `midX`, `midY`, `center`
