@@ -67,6 +67,17 @@ extension Float80: UserDefaultType { }
             UserDefaults.standard.set(newValue, forKey: key)
         }
     }
+    
+    /// Remove the stored value from UserDefaults.
+    ///
+    /// To access this method you have to access the property wrapper with an underscore.
+    /// ```swift
+    /// @UserDefault("test", defaultValue: "") var test: String
+    /// _test.removeFromDefaults()
+    /// ```
+    public func removeFromDefaults() {
+        UserDefaults.standard.set(nil, forKey: key)
+    }
 }
 
 /// Property Wrapper which stores the wrapped value in the `UserDefaults`.
@@ -129,5 +140,16 @@ extension Float80: UserDefaultType { }
                 }
             }
         }
+    }
+    
+    /// Remove the stored value from UserDefaults.
+    ///
+    /// To access this method you have to access the property wrapper with an underscore.
+    /// ```swift
+    /// @UserDefault("test", defaultValue: "") var test: String
+    /// _test.removeFromDefaults()
+    /// ```
+    public func removeFromDefaults() {
+        UserDefaults.standard.set(nil, forKey: key)
     }
 }
