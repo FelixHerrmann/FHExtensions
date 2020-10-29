@@ -109,15 +109,24 @@ final class FHExtensionsTests: XCTestCase {
     func testUserDefault() {
         XCTAssertEqual(test, "")
         XCTAssertEqual(testOptional, nil)
+        XCTAssertNil(UserDefaults.standard.value(forKey: "test"))
+        XCTAssertNil(UserDefaults.standard.value(forKey: "testOptional"))
         
         test = "test"
         testOptional = "test"
         
         XCTAssertEqual(test, "test")
         XCTAssertEqual(testOptional, Optional<String>("test"))
+        XCTAssertEqual(UserDefaults.standard.value(forKey: "test") as? String, "test")
+        XCTAssertEqual(UserDefaults.standard.value(forKey: "testOptional") as? String, "test")
         
-        test = ""
+        _test.removeFromDefaults()
         testOptional = nil
+        
+        XCTAssertEqual(test, "")
+        XCTAssertEqual(testOptional, nil)
+        XCTAssertNil(UserDefaults.standard.value(forKey: "test"))
+        XCTAssertNil(UserDefaults.standard.value(forKey: "testOptional"))
     }
     
     static var allTests = [
