@@ -42,7 +42,7 @@ extension Data: UserDefaultType { }
 extension Array: UserDefaultType where Element: UserDefaultType { }
 extension Dictionary: UserDefaultType where Key: UserDefaultType, Value: UserDefaultType { }
 
-#if os(macOS)
+#if os(macOS) && arch(x86_64)
 extension Float80: UserDefaultType { }
 #endif
 
