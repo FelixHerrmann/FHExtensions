@@ -1,7 +1,10 @@
 #if canImport(UIKit)
 import UIKit
 
-/// A concrete subclass of UIPanGestureRecognizer that looks for panning (dragging) gestures in the setted direction.
+/// A concrete subclass of **UIPanGestureRecognizer** that cancels if the specified direction does not match.
+///
+/// - Important: The `touchesMoved(_:with:)` is not called on trackpad and mouse events.
+/// Use the `UIGestureRecognizerDelegate.gestureRecognizerShouldBegin(_:)` instead if the `allowedScrollTypesMask` is set to `UIScrollTypeMask.discrete` or `UIScrollTypeMask.continuous`.
 public class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
     
     /// The direction of the `UIDirectionalPanGestureRecognizer`.
