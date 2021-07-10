@@ -29,5 +29,8 @@ let package = Package(
         .testTarget(
             name: "FHExtensionsTests",
             dependencies: ["FHExtensions"]),
+        .testTarget(
+            name: "UserDefaultTests",
+            dependencies: ["FHExtensions"]),
     ]
 )

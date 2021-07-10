@@ -102,50 +102,6 @@ final class FHExtensionsTests: XCTestCase {
         #endif
     }
     
-    
-    struct Test: Codable, Equatable {
-        var string: String
-        var int: Int
-    }
-    
-    @UserDefault("test", defaultValue: "") var test
-    @OptionalUserDefault("testOptional") var testOptional: String?
-    @CodableUserDefault("testCodable", defaultValue: Test(string: "", int: 0)) var testCodabel: Test
-    
-    func testUserDefault() throws {
-        print(testCodabel)
-        XCTAssertEqual(test, "")
-        XCTAssertEqual(testOptional, nil)
-        XCTAssertEqual(testCodabel, Test(string: "", int: 0))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "test"))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "testOptional"))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "testCodable"))
-        
-        test = "test"
-        testOptional = "test"
-        testCodabel = Test(string: "a", int: 1)
-        
-        XCTAssertEqual(test, "test")
-        XCTAssertEqual(testOptional, Optional<String>("test"))
-        XCTAssertEqual(testCodabel, Test(string: "a", int: 1))
-        XCTAssertEqual(UserDefaults.standard.value(forKey: "test") as? String, "test")
-        XCTAssertEqual(UserDefaults.standard.value(forKey: "testOptional") as? String, "test")
-        let testCodableData = try XCTUnwrap(UserDefaults.standard.value(forKey: "testCodable") as? Data)
-        let decodedTestCodableData = try PropertyListDecoder().decode(Test.self, from: testCodableData)
-        XCTAssertEqual(decodedTestCodableData, Test(string: "a", int: 1))
-        
-        _test.removeFromDefaults()
-        testOptional = nil
-        _testCodabel.removeFromDefaults()
-        
-        XCTAssertEqual(test, "")
-        XCTAssertEqual(testOptional, nil)
-        XCTAssertEqual(testCodabel, Test(string: "", int: 0))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "test"))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "testOptional"))
-        XCTAssertNil(UserDefaults.standard.value(forKey: "testCodable"))
-    }
-    
     static var allTests = [
         ("arraySafe", testArraySafe),
         ("dateInit", testDateInit),
@@ -153,6 +109,5 @@ final class FHExtensionsTests: XCTestCase {
         ("rgbColors", testRGBColors),
         ("hexColor", testHexColor),
         ("modelIdentifier", testModelIdentifier),
-        ("userDefault", testUserDefault)
     ]
 }
