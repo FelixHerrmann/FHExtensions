@@ -89,7 +89,7 @@ public typealias UserDefaultKey = String
     ///
     /// To access this method you have to access the property wrapper via the projected value.
     /// ```swift
-    /// @UserDefault("test", defaultValue: "") var test: String
+    /// @UserDefault("test") var test = ""
     /// $test.removeFromDefaults()
     /// ```
     public func removeFromDefaults() {
