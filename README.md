@@ -6,14 +6,16 @@
 <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions"><img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions"></a>
 </p>
 
-Some usefull Foundation and UIKit Extensions.
+Some useful Foundation and UIKit Extensions.
 
 >Will be expanded over time.
+
 
 ## Requirements
 - macOS 10.10+
 - iOS 9.0+
 - tvOS 9.0+
+
 
 ## Installation
 
@@ -29,6 +31,7 @@ Add the following to the dependencies of your `Package.swift`:
 
 Download the files in the [Sources](https://github.com/FelixHerrmann/FHExtensions/tree/master/Sources) folder and drag them into you project.
 
+
 ## Usage
 
 ### [Array](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Array.swift)
@@ -36,8 +39,6 @@ Download the files in the [Sources](https://github.com/FelixHerrmann/FHExtension
 #### `subscript(safe index: Index) -> Element?`
 
 This subscript checks, if the index is in range. 
-
-<br>
 
 Getting array values works like that:
 
@@ -50,8 +51,6 @@ print(array[safe: 1]) // Optional(1)
 print(array[3]) // Fatal error: Index out of range
 print(array[safe: 3]) // nil
 ```
-
-<br>
 
 Setting array values works also safely:
 
@@ -156,7 +155,7 @@ With `UIDevice.current.modelIdentifier` you are able to get the model identifier
 
 ### [UIDirectionalPanGestureRecognizer](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDirectionalPanGestureRecognizer.swift)
 
-A concrete subclass of UIPanGestureRecognizer that looks for panning (dragging) gestures in the setted direction.
+A concrete subclass of **UIPanGestureRecognizer** that cancels if the specified direction does not match.
 
 ```swift
 let directionalPanRecognizer = UIDirectionalPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
@@ -164,37 +163,47 @@ directionalPanRecognizer.direction = .vertical
 view.addGestureRecognizer(directionalPanRecognizer)
 ```
 
+> The `touchesMoved(_:with:)` is not called on trackpad and mouse events.
+Use the `UIGestureRecognizerDelegate.gestureRecognizerShouldBegin(_:)` instead if the `allowedScrollTypesMask` is set to `UIScrollTypeMask.discrete` or `UIScrollTypeMask.continuous`.
+
 
 ### [UserDefault](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
 
-A property wrapper which stores the wrapped value in the `UserDefaults`.
+A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
+
+It supports all the types that are allowed by `UserDefaults`. 
 
 ```swift
-@UserDefault("test", defaultValue: "") var test: String
+@UserDefault("string") var string = ""
+@UserDefault("int") var int = 0
+@UserDefault("array") var array: [String] = []
+@UserDefault("dictionary") var dictionary [String: Int] = [:]
 ```
 
-> The wrapped value must be of type `UserDefaultType`.
-For every other type use the `CodableUserDefault` wrapper.
-
-#### OptionalUserDefault
-
-The `UserDefault` property wrapper but for optional types.
+In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
+For no-`RawRepresentable` enums use `Codable`. 
 
 ```swift
-@OptionalUserDefault("test") var test: String?
-```
+@UserDefault("optional") var optional: String? = nil
 
-#### CodableUserDefault
 
-This property wrapper works exactly like the `UserDefault` one but accepts any type that conforms to the `Codable` protocol.
+enum Enumeration: String, UserDefaultStorable {
+    case firstCase
+    case secondCase
+}
 
-```swift
-struct TestType: Codable {
+@UserDefault("enumeration") var enumeration: Enumeration = .firstCase
+
+
+struct CustomType: Codable, UserDefaultStorable {
     let name: String
 }
 
-@CodableUserDefault("test", defaultValue: TestType(name: "") var test: TestType
+@UserDefault("codable") var codable = CustomType(name: "")
 ```
+
+> The wrapped value must conform to `UserDefaultStorable`.
+
 
 ## License
 
