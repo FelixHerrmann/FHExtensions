@@ -181,7 +181,7 @@ It supports all the types that are allowed by `UserDefaults`.
 ```
 
 In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
-For no-`RawRepresentable` enums use `Codable`. 
+For non-`RawRepresentable` enums use `Codable`. 
 
 ```swift
 @UserDefault("optional") var optional: String? = nil
