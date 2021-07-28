@@ -53,7 +53,6 @@ public extension UIColor {
     ///
     /// - Parameter hex: The hex string to create the color with.
     convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
         if hex.hasPrefix("#") {
@@ -65,10 +64,10 @@ public extension UIColor {
             var hexNumber: UInt64 = 0
             
             if scanner.scanHexInt64(&hexNumber) {
-                r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
-                g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
-                b = CGFloat((hexNumber & 0x0000ff) >> 0) / 255
-                a = CGFloat(1)
+                let r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
+                let g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
+                let b = CGFloat((hexNumber & 0x0000ff) >> 0) / 255
+                let a = CGFloat(1)
                 
                 self.init(red: r, green: g, blue: b, alpha: a)
                 return
@@ -80,10 +79,10 @@ public extension UIColor {
             var hexNumber: UInt64 = 0
             
             if scanner.scanHexInt64(&hexNumber) {
-                r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                a = CGFloat(hexNumber & 0x000000ff) / 255
+                let r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                let g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                let b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                let a = CGFloat(hexNumber & 0x000000ff) / 255
                 
                 self.init(red: r, green: g, blue: b, alpha: a)
                 return
@@ -107,14 +106,21 @@ public extension UIColor {
     /// - Returns: The created hex string.
     func createHex(alpha: Bool = false, hashSymbol: Bool = true) -> String {
         if alpha {
-            let rgba: Int = (Int)(red * 255) << 24 | (Int)(green * 255) << 16 | (Int)(blue * 255) << 8 | (Int)(self.alpha * 255) << 0
+            let r = Int(red * 255) << 24
+            let g = Int(green * 255) << 16
+            let b = Int(blue * 255) << 8
+            let a = Int(self.alpha * 255) << 0
+            let rgba: Int = r | g | b | a
             if hashSymbol {
                 return NSString(format: "#%08x", rgba) as String
             } else {
                 return NSString(format: "%08x", rgba) as String
             }
         } else {
-            let rgb: Int = (Int)(red * 255) << 16 | (Int)(green * 255) << 8 | (Int)(blue * 255) << 0
+            let r = Int(red * 255) << 16
+            let g = Int(green * 255) << 8
+            let b = Int(blue * 255) << 0
+            let rgb: Int = r | g | b
             if hashSymbol {
                 return NSString(format: "#%06x", rgb) as String
             } else {
