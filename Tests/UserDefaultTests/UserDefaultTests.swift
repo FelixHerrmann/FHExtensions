@@ -1,7 +1,6 @@
 import XCTest
 @testable import FHExtensions
 
-
 struct CustomType: Codable, UserDefaultStorable, Equatable {
     var string: String
     var int: Int
@@ -13,111 +12,106 @@ enum RawRepresentableEnumeration: String, UserDefaultStorable {
 }
 
 extension UserDefaultKey {
-    static let test: UserDefaultKey = "com.felixherrmann.FHExtensions.test"
-    static let testArray: UserDefaultKey = "com.felixherrmann.FHExtensions.testArray"
-    static let testDictionary: UserDefaultKey = "com.felixherrmann.FHExtensions.testDictionary"
-    static let testOptional: UserDefaultKey = "com.felixherrmann.FHExtensions.testOptional"
-    static let testCodable: UserDefaultKey = "com.felixherrmann.FHExtensions.testCodable"
-    static let testEnum: UserDefaultKey = "com.felixherrmann.FHExtensions.testEnum"
+    static let valueType: UserDefaultKey = "com.felixherrmann.FHExtensions.valueType"
+    static let array: UserDefaultKey = "com.felixherrmann.FHExtensions.array"
+    static let dictionary: UserDefaultKey = "com.felixherrmann.FHExtensions.dictionary"
+    static let optional: UserDefaultKey = "com.felixherrmann.FHExtensions.optional"
+    static let codable: UserDefaultKey = "com.felixherrmann.FHExtensions.codable"
+    static let rawRepresentable: UserDefaultKey = "com.felixherrmann.FHExtensions.rawRepresentable"
 }
 
 final class UserDefaultTests: XCTestCase {
     
+    @UserDefault(.valueType) var valueType = ""
+    @UserDefault(.array) var array = ["a", "b"]
+    @UserDefault(.dictionary) var dictionary = ["a": 1, "b": 2]
+    @UserDefault(.optional) var optional: String? = nil
+    @UserDefault(.codable) var codabel = CustomType(string: "", int: 0)
+    @UserDefault(.rawRepresentable) var rawRepresentable: RawRepresentableEnumeration = .a
+    
     func testValueType() throws {
-        @UserDefault(.test) var test = ""
+        $valueType.removeFromDefaults()
+        XCTAssertEqual(valueType, "")
+        XCTAssertNil(UserDefaults.standard.value(forKey: $valueType.key))
         
-        $test.removeFromDefaults()
-        XCTAssertEqual(test, "")
-        XCTAssertNil(UserDefaults.standard.value(forKey: $test.key))
+        valueType = "test"
+        XCTAssertEqual(valueType, "test")
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $valueType.key) as? String, "test")
         
-        test = "test"
-        XCTAssertEqual(test, "test")
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $test.key) as? String, "test")
-        
-        $test.removeFromDefaults()
-        XCTAssertEqual(test, "")
-        XCTAssertNil(UserDefaults.standard.value(forKey: $test.key))
+        $valueType.removeFromDefaults()
+        XCTAssertEqual(valueType, "")
+        XCTAssertNil(UserDefaults.standard.value(forKey: $valueType.key))
     }
     
     func testArray() throws {
-        @UserDefault(.testArray) var testArray = ["a", "b"]
+        $array.removeFromDefaults()
+        XCTAssertEqual(array, ["a", "b"])
+        XCTAssertNil(UserDefaults.standard.value(forKey: $array.key))
         
-        $testArray.removeFromDefaults()
-        XCTAssertEqual(testArray, ["a", "b"])
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testArray.key))
+        array = ["a", "b", "c"]
+        XCTAssertEqual(array, ["a", "b", "c"])
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $array.key) as? Array, ["a", "b", "c"])
         
-        testArray = ["a", "b", "c"]
-        XCTAssertEqual(testArray, ["a", "b", "c"])
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $testArray.key) as? Array, ["a", "b", "c"])
-        
-        $testArray.removeFromDefaults()
-        XCTAssertEqual(testArray, ["a", "b"])
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testArray.key))
+        $array.removeFromDefaults()
+        XCTAssertEqual(array, ["a", "b"])
+        XCTAssertNil(UserDefaults.standard.value(forKey: $array.key))
     }
     
-    func testDictionary() throws {
-        @UserDefault(.testDictionary) var testDictionary = ["a": 1, "b": 2]
+    func _testDictionary() throws {
+        $dictionary.removeFromDefaults()
+        XCTAssertEqual(dictionary, ["a": 1, "b": 2])
+        XCTAssertNil(UserDefaults.standard.value(forKey: $dictionary.key))
         
-        $testDictionary.removeFromDefaults()
-        XCTAssertEqual(testDictionary, ["a": 1, "b": 2])
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testDictionary.key))
+        dictionary = ["a": 1, "b": 2, "c": 3]
+        XCTAssertEqual(dictionary, ["a": 1, "b": 2, "c": 3])
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $dictionary.key) as? Dictionary, ["a": 1, "b": 2, "c": 3])
         
-        testDictionary = ["a": 1, "b": 2, "c": 3]
-        XCTAssertEqual(testDictionary, ["a": 1, "b": 2, "c": 3])
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $testDictionary.key) as? Dictionary, ["a": 1, "b": 2, "c": 3])
-        
-        $testDictionary.removeFromDefaults()
-        XCTAssertEqual(testDictionary, ["a": 1, "b": 2])
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testDictionary.key))
+        $dictionary.removeFromDefaults()
+        XCTAssertEqual(dictionary, ["a": 1, "b": 2])
+        XCTAssertNil(UserDefaults.standard.value(forKey: $dictionary.key))
     }
     
     func testOptional() throws {
-        @UserDefault(.testOptional) var testOptional: String? = nil
+        $optional.removeFromDefaults()
+        XCTAssertNil(optional)
+        XCTAssertNil(UserDefaults.standard.value(forKey: $optional.key))
         
-        $testOptional.removeFromDefaults()
-        XCTAssertNil(testOptional)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testOptional.key))
+        optional = "test"
+        XCTAssertEqual(optional, Optional<String>("test"))
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $optional.key) as? String, "test")
         
-        testOptional = "test"
-        XCTAssertEqual(testOptional, Optional<String>("test"))
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $testOptional.key) as? String, "test")
-        
-        testOptional = nil
-        XCTAssertNil(testOptional)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testOptional.key))
+        optional = nil
+        XCTAssertNil(optional)
+        XCTAssertNil(UserDefaults.standard.value(forKey: $optional.key))
     }
     
     func testCodable() throws {
-        @UserDefault(.testCodable) var testCodabel = CustomType(string: "", int: 0)
+        $codabel.removeFromDefaults()
+        XCTAssertEqual(codabel, CustomType(string: "", int: 0))
+        XCTAssertNil(UserDefaults.standard.value(forKey: $codabel.key))
         
-        $testCodabel.removeFromDefaults()
-        XCTAssertEqual(testCodabel, CustomType(string: "", int: 0))
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testCodabel.key))
-        
-        testCodabel = CustomType(string: "a", int: 1)
-        XCTAssertEqual(testCodabel, CustomType(string: "a", int: 1))
-        let testCodableData = try XCTUnwrap(UserDefaults.standard.value(forKey: $testCodabel.key) as? Data)
+        codabel = CustomType(string: "a", int: 1)
+        XCTAssertEqual(codabel, CustomType(string: "a", int: 1))
+        let testCodableData = try XCTUnwrap(UserDefaults.standard.value(forKey: $codabel.key) as? Data)
         let decodedTestCodableData = try PropertyListDecoder().decode(CustomType.self, from: testCodableData)
         XCTAssertEqual(decodedTestCodableData, CustomType(string: "a", int: 1))
         
-        $testCodabel.removeFromDefaults()
-        XCTAssertEqual(testCodabel, CustomType(string: "", int: 0))
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testCodabel.key))
+        $codabel.removeFromDefaults()
+        XCTAssertEqual(codabel, CustomType(string: "", int: 0))
+        XCTAssertNil(UserDefaults.standard.value(forKey: $codabel.key))
     }
     
     func testRawRepresentable() throws {
-        @UserDefault(.testEnum) var testEnum: RawRepresentableEnumeration = .a
+        $rawRepresentable.removeFromDefaults()
+        XCTAssertEqual(rawRepresentable, .a)
+        XCTAssertNil(UserDefaults.standard.value(forKey: $rawRepresentable.key))
         
-        $testEnum.removeFromDefaults()
-        XCTAssertEqual(testEnum, .a)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testEnum.key))
+        rawRepresentable = .b
+        XCTAssertEqual(rawRepresentable, .b)
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $rawRepresentable.key) as? String, "b")
         
-        testEnum = .b
-        XCTAssertEqual(testEnum, .b)
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $testEnum.key) as? String, "b")
-        
-        $testEnum.removeFromDefaults()
-        XCTAssertEqual(testEnum, .a)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $testEnum.key))
+        $rawRepresentable.removeFromDefaults()
+        XCTAssertEqual(rawRepresentable, .a)
+        XCTAssertNil(UserDefaults.standard.value(forKey: $rawRepresentable.key))
     }
 }
