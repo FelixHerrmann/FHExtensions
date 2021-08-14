@@ -167,44 +167,6 @@ view.addGestureRecognizer(directionalPanRecognizer)
 Use the `UIGestureRecognizerDelegate.gestureRecognizerShouldBegin(_:)` instead if the `allowedScrollTypesMask` is set to `UIScrollTypeMask.discrete` or `UIScrollTypeMask.continuous`.
 
 
-### [UserDefault](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UserDefault.swift)
-
-A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
-
-It supports all the types that are allowed by `UserDefaults`. 
-
-```swift
-@UserDefault("string") var string = ""
-@UserDefault("int") var int = 0
-@UserDefault("array") var array: [String] = []
-@UserDefault("dictionary") var dictionary [String: Int] = [:]
-```
-
-In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
-For non-`RawRepresentable` enums use `Codable`. 
-
-```swift
-@UserDefault("optional") var optional: String? = nil
-
-
-enum Enumeration: String, UserDefaultStorable {
-    case firstCase
-    case secondCase
-}
-
-@UserDefault("enumeration") var enumeration: Enumeration = .firstCase
-
-
-struct CustomType: Codable, UserDefaultStorable {
-    let name: String
-}
-
-@UserDefault("codable") var codable = CustomType(name: "")
-```
-
-> The wrapped value must conform to `UserDefaultStorable`.
-
-
 ## License
 
 FHExtensions is available under the MIT license. See the [LICENSE](https://github.com/FelixHerrmann/FHExtensions/blob/master/LICENSE) file for more info.
