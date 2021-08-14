@@ -17,8 +17,11 @@ final class FHExtensionsTests: XCTestCase {
     }
     
     func testDateInit() {
-        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0) else { return }
-        let components = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year,], from: date)
+        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)) else { return }
+        
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? .current
+        let components = calendar.dateComponents([.second, .minute, .hour, .day, .month, .year, .timeZone], from: date)
         
         XCTAssertEqual(components.second, 0)
         XCTAssertEqual(components.minute, 41)
@@ -26,6 +29,7 @@ final class FHExtensionsTests: XCTestCase {
         XCTAssertEqual(components.day, 23)
         XCTAssertEqual(components.month, 2)
         XCTAssertEqual(components.year, 1999)
+        XCTAssertEqual(components.timeZone, TimeZone(secondsFromGMT: 0))
     }
     
     func testDateEncodingDecodingStrategy() {
