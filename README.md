@@ -83,16 +83,16 @@ Convenience properties for `CGRect` coordinates.
 
 ### [Date](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Date.swift)
 
-#### `init?(_:_:_:hour:minute:second)`
+#### `init?(_:_:_:hour:minute:second:timeZone)`
 
 This initializer can create a `Date` object by date components. It can fail if a date could not be found which matches the components.
 
 ```swift
 let date = Date(23, 2, 1999)
-let dateWithTime = Date(23, 2, 1999, hour: 9, minute: 41, second: 0)
+let dateWithTimeAndTimeZone = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0))
 ```
 
->The time values are optional.
+>The time values and time zone are optional.
 
 
 ### [JSONDecoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONDecoder.swift)
@@ -100,7 +100,7 @@ let dateWithTime = Date(23, 2, 1999, hour: 9, minute: 41, second: 0)
 #### `DateDecodingStrategy.iso8601withFractionalSeconds`
 
 An ISO 8601 `DateDecodingStrategy` with fractional seconds.
-Something like `1999-02-23T08:41:00.000Z` will work with the decoder.
+Something like `1999-02-23T09:41:00.000Z` will work with the decoder.
 
 
 ### [JSONEncoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONEncoder.swift)
@@ -108,7 +108,7 @@ Something like `1999-02-23T08:41:00.000Z` will work with the decoder.
 #### `DateEncodingStrategy.iso8601withFractionalSeconds`
 
 An ISO 8601 `DateEncodingStrategy` with fractional seconds.
-Something like `1999-02-23T08:41:00.000Z` will be the output from the encoder.
+Something like `1999-02-23T09:41:00.000Z` will be the output from the encoder.
 
 
 ### [String](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/String.swift)

@@ -12,8 +12,9 @@ public extension Date {
     ///   - hour: The hour of the date. Default is nil.
     ///   - minute: The minute of the date. Default is nil.
     ///   - second: The second of the date. Default is nil.
-    init?(_ day: Int, _ month: Int, _ year: Int, hour: Int? = nil, minute: Int? = nil, second: Int? = nil) {
-        let dateComponents = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+    ///   - timeZone: The time zone the date should be created with. Default is `TimeZone.current`.
+    init?(_ day: Int, _ month: Int, _ year: Int, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, timeZone: TimeZone? = .current) {
+        let dateComponents = DateComponents(timeZone: timeZone, year: year, month: month, day: day, hour: hour, minute: minute, second: second)
         guard let date = Calendar.current.date(from: dateComponents) else {
             return nil
         }
