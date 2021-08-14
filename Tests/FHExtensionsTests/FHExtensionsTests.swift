@@ -45,7 +45,6 @@ final class FHExtensionsTests: XCTestCase {
             guard let data = try? encoder.encode(date) else { return }
             
             if let dateString = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? String {
-                print(date.description)
                 XCTAssertEqual(dateString, "1999-02-23T09:41:00.000Z")
             }
             

@@ -1,5 +1,4 @@
-#if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
-
+#if canImport(UIKit)
 import UIKit
 
 public extension UIDevice {
