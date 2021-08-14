@@ -101,13 +101,4 @@ final class FHExtensionsTests: XCTestCase {
         XCTAssertNotNil(UIDevice.current.modelIdentifier, "Found model identifier")
         #endif
     }
-    
-    static var allTests = [
-        ("arraySafe", testArraySafe),
-        ("dateInit", testDateInit),
-        ("dateEncodingDecodingStrategy", testDateEncodingDecodingStrategy),
-        ("rgbColors", testRGBColors),
-        ("hexColor", testHexColor),
-        ("modelIdentifier", testModelIdentifier),
-    ]
 }
