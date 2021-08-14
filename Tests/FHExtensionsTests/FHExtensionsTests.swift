@@ -33,7 +33,7 @@ final class FHExtensionsTests: XCTestCase {
     }
     
     func testDateEncodingDecodingStrategy() {
-        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0) else { return }
+        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)) else { return }
         
         if #available(OSX 10.13, iOS 11.0, tvOS 11.0, *) {
             let encoder = JSONEncoder()
@@ -45,7 +45,8 @@ final class FHExtensionsTests: XCTestCase {
             guard let data = try? encoder.encode(date) else { return }
             
             if let dateString = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? String {
-                XCTAssertEqual(dateString, "1999-02-23T08:41:00.000Z")
+                print(date.description)
+                XCTAssertEqual(dateString, "1999-02-23T09:41:00.000Z")
             }
             
             if let decodedDate = try? decoder.decode(Date.self, from: data) {
