@@ -2,6 +2,7 @@
 import UIKit
 
 public extension UIColor {
+    
     /// Returns the red component that make up the color in the RGB color space.
     ///
     /// Value is between `0.0` and `1.0.
