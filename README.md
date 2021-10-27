@@ -1,10 +1,10 @@
 # FHExtensions
 
-<p align="left">
-<a href="https://github.com/FelixHerrmann/FHExtensions/releases"><img alt="GitHub version" src="https://img.shields.io/github/v/release/FelixHerrmann/FHExtensions"></a>
-<a href="https://github.com/FelixHerrmann/FHExtensions/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/FelixHerrmann/FHExtensions"></a>
-<a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions"><img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions"></a>
-</p>
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHExtensions%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHExtensions)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHExtensions%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHExtensions)
+[![Version](https://img.shields.io/github/v/release/FelixHerrmann/FHExtensions)](https://github.com/FelixHerrmann/FHExtensions/releases)
+[![License](https://img.shields.io/github/license/FelixHerrmann/FHExtensions)](https://github.com/FelixHerrmann/FHExtensions/blob/master/LICENSE)
+[![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions)
 
 Some useful Foundation and UIKit Extensions.
 
