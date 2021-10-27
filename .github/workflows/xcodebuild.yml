@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build macOS
-        run: xcodebuild -scheme FHExtensions
+        run: xcodebuild -scheme FHExtensions -destination 'platform=macOS'
       - name: Run macOS tests
-        run: xcodebuild -scheme FHExtensions test
+        run: xcodebuild -scheme FHExtensions -destination 'platform=macOS' test
   
   build-ios:
     runs-on: macos-latest
