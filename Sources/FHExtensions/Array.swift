@@ -1,23 +1,24 @@
 import Foundation
 
-public extension Array {
+extension Array {
     
     /// Accesses the element at the specified position safely.
+    ///
+    /// Parse `nil` will remove the item at the specified index.
+    ///
     /// - Parameter index: The position of the element to access safely.
-    @inlinable subscript(safe index: Index) -> Element? {
+    @inlinable
+    public subscript(safe index: Index) -> Element? {
         get {
-            guard index >= startIndex && index < endIndex else {
-                return nil
-            }
-            
-            return self[index]
+            return indices.contains(index) ? self[index] : nil
         }
         set {
-            guard let newValue = newValue, index >= startIndex && index < endIndex else {
-                return
+            guard indices.contains(index) else { return }
+            if let newValue = newValue {
+                self[index] = newValue
+            } else {
+                self.remove(at: index)
             }
-            
-            self[index] = newValue
         }
     }
 }
