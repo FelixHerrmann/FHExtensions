@@ -1,19 +1,63 @@
 import XCTest
 @testable import FHExtensions
 
-#if canImport(UIKit)
+#if canImport(AppKit)
+import AppKit
+#elseif canImport(UIKit)
 import UIKit
+#else
+import Foundation
 #endif
 
 final class FHExtensionsTests: XCTestCase {
+    
     func testArraySafe() {
         var array: [String] = ["test", "test2"]
         
         XCTAssertEqual(array[safe: 1], "test2")
-        XCTAssertNil(array[safe: 2], "value is nill")
+        XCTAssertNil(array[safe: 2])
         
-        array[safe: 1] = "test 3"
-        XCTAssertEqual(array[safe: 1], "test 3")
+        array[safe: 1] = "test3"
+        XCTAssertEqual(array[safe: 1], "test3")
+        
+        array[safe: 2] = "test4"
+        XCTAssertNil(array[safe: 2])
+    }
+    
+    func testBundleNumbers() {
+        let bundle = Bundle.main
+        
+        XCTAssertNotNil(bundle.buildNumber)
+        XCTAssertNotNil(bundle.versionNumber)
+    }
+    
+    func testRectHelpers() {
+        #if canImport(CoreGraphics)
+        var rect = CGRect(x: 10, y: 10, width: 20, height: 20)
+        
+        XCTAssertEqual(rect.x, 10)
+        XCTAssertEqual(rect.y, 10)
+        XCTAssertEqual(rect.top, 10)
+        XCTAssertEqual(rect.bottom, 30)
+        XCTAssertEqual(rect.left, 10)
+        XCTAssertEqual(rect.right, 30)
+        XCTAssertEqual(rect.center, CGPoint(x: 20, y: 20))
+        
+        rect.top = -10
+        rect.left = -10
+        rect.size.height = 30
+        rect.size.width = 40
+        
+        XCTAssertEqual(rect.x, -10)
+        XCTAssertEqual(rect.y, -10)
+        XCTAssertEqual(rect.bottom, 20)
+        XCTAssertEqual(rect.right, 30)
+        
+        rect.center.x += 5
+        
+        XCTAssertEqual(rect.x, -5)
+        XCTAssertEqual(rect.y, -10)
+        #endif
     }
     
     func testDateInit() {
@@ -57,8 +101,8 @@ final class FHExtensionsTests: XCTestCase {
     func testCapitalizeString() {
         let string = "test string"
         
-        XCTAssertEqual("Test string", string.capitalizedFirst)
-        XCTAssertNotEqual("Test String", string.capitalizedFirst)
+        XCTAssertEqual(string.capitalizedFirst, "Test string")
+        XCTAssertNotEqual(string.capitalizedFirst, "Test String")
     }
     
     func testRGBColors() {
