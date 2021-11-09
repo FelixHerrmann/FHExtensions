@@ -8,7 +8,7 @@ let package = Package(
     platforms: [
         .macOS(.v10_10),
         .iOS(.v9),
-        .tvOS(.v9)
+        .tvOS(.v9),
     ],
     products: [
         .library(
@@ -22,6 +22,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "FHExtensionsTests",
-            dependencies: ["FHExtensions"])
+            dependencies: ["FHExtensions"]),
     ]
 )
