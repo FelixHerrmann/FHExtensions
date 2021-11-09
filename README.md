@@ -126,7 +126,7 @@ These properties are based on the `getRed(_:green:blue:alpha)` method.
 
 #### `init?(hex:)`
 
-This initializer can create a `UIColor` object by a hex string. It can fail if the string has not the correct format.
+This initializer can create a `UIColor`-object by a hex string. It can fail if the string has not the correct format.
 It allows hex strings with and without alpha, the hash symbol is not required and capitalization does not matter.
 
 ```swift
@@ -165,6 +165,32 @@ view.addGestureRecognizer(directionalPanRecognizer)
 
 > The `touchesMoved(_:with:)` is not called on trackpad and mouse events.
 Use the `UIGestureRecognizerDelegate.gestureRecognizerShouldBegin(_:)` instead if the `allowedScrollTypesMask` is set to `UIScrollTypeMask.discrete` or `UIScrollTypeMask.continuous`.
+
+
+### [NSColor](/Sources/FHExtensions/AppKit/NSColor.swift)
+
+#### RGB: `red`, `green`, `blue`, `alpha`
+
+These properties are based on the `getRed(_:green:blue:alpha)` method.
+
+#### `init?(hex:)`
+
+This initializer can create an `NSColor`-object by a hex string. It can fail if the string has not the correct format.
+It allows hex strings with and without alpha, the hash symbol is not required and capitalization does not matter.
+
+```swift
+let yellow: NSColor? = NSColor(hex: "#ffff00ff")
+```
+
+#### `createHex(alpha:hashSymbol:)`
+
+This method creates a hex string from the color instance.
+
+```swift
+let yellow = NSColor(red: 1, green: 1, blue: 0, alpha: 1)
+let hexString: String = yellow.createHex(alpha: true)
+print(hexString) // "#ffff00ff"
+```
 
 
 ## License

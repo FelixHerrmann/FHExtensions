@@ -34,7 +34,6 @@ final class UIKitTests: XCTestCase {
         XCTAssertNil(UIColor(hex: "#80ff00f"))
         XCTAssertNil(UIColor(hex: "#80ff00fff"))
         
-        
         XCTAssertEqual(hex6With.createHex(alpha: false, hashSymbol: false), "80ff00")
         XCTAssertEqual(hex6Without.createHex(alpha: false, hashSymbol: true), "#80ff00")
         XCTAssertEqual(hex8With.createHex(alpha: true, hashSymbol: false), "80ff00ff")
