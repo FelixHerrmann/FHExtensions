@@ -74,7 +74,7 @@ The values for the `CFBundleShortVersionString` and `CFBundleVersion` key in the
 
 ### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
 
-#### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `midX`, `midY`, `center`
+#### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `center`
 
 Convenience properties for `CGRect` coordinates.
 

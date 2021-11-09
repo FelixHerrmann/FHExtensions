@@ -63,26 +63,6 @@ public extension CGRect {
         }
     }
     
-    /// The midX-coordinate of the rectangle’s origin.
-    var midX: CGFloat {
-        get {
-            return self.x + self.width / 2
-        }
-        set {
-            self = CGRect(x: newValue - width / 2, y: y, width: width, height: height)
-        }
-    }
-    
-    /// The midY-coordinate of the rectangle’s origin.
-    var midY: CGFloat {
-        get {
-            return self.y + self.height / 2
-        }
-        set {
-            self = CGRect(x: x, y: newValue - height / 2, width: width, height: height)
-        }
-    }
-    
     /// The center-coordinate of the rectangle’s origin.
     var center: CGPoint {
         get {
