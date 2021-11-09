@@ -5,7 +5,7 @@ import UIKit
 ///
 /// - Important: The `touchesMoved(_:with:)` is not called on trackpad and mouse events.
 /// Use the `UIGestureRecognizerDelegate.gestureRecognizerShouldBegin(_:)` instead if the `allowedScrollTypesMask` is set to `UIScrollTypeMask.discrete` or `UIScrollTypeMask.continuous`.
-public class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
+open class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
     
     /// The direction of the `UIDirectionalPanGestureRecognizer`.
     public enum Direction {
@@ -15,10 +15,10 @@ public class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
     
     /// The allowed pan direction.
     ///
-    /// The default value is `Direction.horizontal`.
-    public var direction: Direction = .horizontal
+    /// The default value of this property is `Direction.horizontal`.
+    open var direction: Direction = .horizontal
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
         
         if state == .began {
@@ -35,4 +35,4 @@ public class UIDirectionalPanGestureRecognizer: UIPanGestureRecognizer {
     }
 }
 
-#endif
+#endif // canImport(UIKit)
