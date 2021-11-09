@@ -1,6 +1,9 @@
 #if canImport(UIKit)
 import UIKit
 
+
+// MARK: - RGBA
+
 extension UIColor {
     
     /// Returns the red component that make up the color in the RGB color space.
@@ -39,6 +42,9 @@ extension UIColor {
         return alpha
     }
 }
+
+
+// MARK: - HEX
 
 extension UIColor {
     
