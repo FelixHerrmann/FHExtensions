@@ -1,12 +1,12 @@
 #if canImport(UIKit)
 import UIKit
 
-public extension UIColor {
+extension UIColor {
     
     /// Returns the red component that make up the color in the RGB color space.
     ///
     /// Value is between `0.0` and `1.0.
-    var red: CGFloat {
+    public var red: CGFloat {
         var red: CGFloat = 0
         getRed(&red, green: nil, blue: nil, alpha: nil)
         return red
@@ -15,7 +15,7 @@ public extension UIColor {
     /// Returns the green component that make up the color in the RGB color space.
     ///
     /// Value is between `0.0` and `1.0.
-    var green: CGFloat {
+    public var green: CGFloat {
         var green: CGFloat = 0
         getRed(nil, green: &green, blue: nil, alpha: nil)
         return green
@@ -24,7 +24,7 @@ public extension UIColor {
     /// Returns the blue component that make up the color in the RGB color space.
     ///
     /// Value is between `0.0` and `1.0.
-    var blue: CGFloat {
+    public var blue: CGFloat {
         var blue: CGFloat = 0
         getRed(nil, green: nil, blue: &blue, alpha: nil)
         return blue
@@ -33,14 +33,14 @@ public extension UIColor {
     /// Returns the alpha component that make up the color in the RGB color space.
     ///
     /// Value is between `0.0` and `1.0.
-    var alpha: CGFloat {
+    public var alpha: CGFloat {
         var alpha: CGFloat = 0
         getRed(nil, green: nil, blue: nil, alpha: &alpha)
         return alpha
     }
 }
 
-public extension UIColor {
+extension UIColor {
     
     /// Creates a color instance from a hex string.
     ///
@@ -53,7 +53,7 @@ public extension UIColor {
     /// ```
     ///
     /// - Parameter hex: The hex string to create the color with.
-    convenience init?(hex: String) {
+    public convenience init?(hex: String) {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
         if hex.hasPrefix("#") {
@@ -105,7 +105,7 @@ public extension UIColor {
     ///   - alpha: Controls whether the hex string contains alpha or not. Default value is `false`.
     ///   - hashSymbol: Controls whether the hex string the hash symbol or not. Default value is `true`.
     /// - Returns: The created hex string.
-    func createHex(alpha: Bool = false, hashSymbol: Bool = true) -> String {
+    public func createHex(alpha: Bool = false, hashSymbol: Bool = true) -> String {
         if alpha {
             let r = Int(red * 255) << 24
             let g = Int(green * 255) << 16
@@ -131,4 +131,4 @@ public extension UIColor {
     }
 }
 
-#endif
+#endif // canImport(UIKit)

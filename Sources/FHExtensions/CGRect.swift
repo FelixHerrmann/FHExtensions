@@ -1,32 +1,32 @@
 #if canImport(CoreGraphics)
 import CoreGraphics
 
-public extension CGRect {
+extension CGRect {
     
     /// The x-coordinate of the rectangle’s origin.
-    var x: CGFloat {
+    public var x: CGFloat {
         get {
-            return self.origin.x
+            return origin.x
         }
         set {
-            self = CGRect(x: newValue, y: self.y, width: self.width, height: self.height)
+            self = CGRect(x: newValue, y: y, width: width, height: height)
         }
     }
     
     /// The y-coordinate of the rectangle’s origin.
-    var y: CGFloat {
+    public var y: CGFloat {
         get {
-            return self.origin.y
+            return origin.y
         }
         set {
-            self = CGRect(x: self.x, y: newValue, width: self.width, height: self.height)
+            self = CGRect(x: x, y: newValue, width: width, height: height)
         }
     }
     
     /// The top-coordinate of the rectangle’s origin.
-    var top: CGFloat {
+    public var top: CGFloat {
         get {
-            return self.origin.y
+            return origin.y
         }
         set {
             y = newValue
@@ -34,9 +34,9 @@ public extension CGRect {
     }
     
     /// The bottom-coordinate of the rectangle’s origin.
-    var bottom: CGFloat {
+    public var bottom: CGFloat {
         get {
-            return self.origin.y + self.size.height
+            return origin.y + height
         }
         set {
             self = CGRect(x: x, y: newValue - height, width: width, height: height)
@@ -44,19 +44,19 @@ public extension CGRect {
     }
     
     /// The left-coordinate of the rectangle’s origin.
-    var left: CGFloat {
+    public var left: CGFloat {
         get {
-            return self.origin.x
+            return origin.x
         }
         set {
-            self.x = newValue
+            x = newValue
         }
     }
     
     /// The right-coordinate of the rectangle’s origin.
-    var right: CGFloat {
+    public var right: CGFloat {
         get {
-            return x + width
+            return origin.x + width
         }
         set {
             self = CGRect(x: newValue - width, y: y, width: width, height: height)
@@ -64,9 +64,9 @@ public extension CGRect {
     }
     
     /// The center-coordinate of the rectangle’s origin.
-    var center: CGPoint {
+    public var center: CGPoint {
         get {
-            return CGPoint(x: self.midX, y: self.midY)
+            return CGPoint(x: midX, y: midY)
         }
         set {
             self = CGRect(x: newValue.x - width / 2, y: newValue.y - height / 2, width: width, height: height)

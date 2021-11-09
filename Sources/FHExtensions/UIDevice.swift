@@ -1,10 +1,10 @@
 #if canImport(UIKit)
 import UIKit
 
-public extension UIDevice {
+extension UIDevice {
     
     /// Returns the model identifier of the current device.
-    var modelIdentifier: String {
+    public var modelIdentifier: String {
         #if targetEnvironment(macCatalyst)
         var len = 0
         sysctlbyname("hw.model", nil, &len, nil, 0)
@@ -23,4 +23,4 @@ public extension UIDevice {
     }
 }
 
-#endif
+#endif // canImport(UIKit)

@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Date {
+extension Date {
     
     /// Initialize a `Date` by date components.
     ///
@@ -13,7 +13,7 @@ public extension Date {
     ///   - minute: The minute of the date. Default is nil.
     ///   - second: The second of the date. Default is nil.
     ///   - timeZone: The time zone the date should be created with. Default is `TimeZone.current`.
-    init?(_ day: Int, _ month: Int, _ year: Int, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, timeZone: TimeZone? = .current) {
+    public init?(_ day: Int, _ month: Int, _ year: Int, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, timeZone: TimeZone? = .current) {
         let dateComponents = DateComponents(timeZone: timeZone, year: year, month: month, day: day, hour: hour, minute: minute, second: second)
         guard let date = Calendar.current.date(from: dateComponents) else {
             return nil

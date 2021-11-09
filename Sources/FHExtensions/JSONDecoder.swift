@@ -1,10 +1,10 @@
 import Foundation
 
-@available(OSX 10.13, iOS 11.0, tvOS 11.0, *)
-public extension JSONDecoder.DateDecodingStrategy {
+extension JSONDecoder.DateDecodingStrategy {
     
     /// The strategy that formats dates according to the ISO 8601 standard with fractional seconds.
-    static let iso8601withFractionalSeconds = custom { (decoder) -> Date in
+    @available(OSX 10.13, iOS 11.0, tvOS 11.0, *)
+    public static let iso8601withFractionalSeconds = custom { decoder -> Date in
         let container = try decoder.singleValueContainer()
         let dateString = try container.decode(String.self)
         let formatter = ISO8601DateFormatter()
