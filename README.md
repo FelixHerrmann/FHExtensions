@@ -29,12 +29,12 @@ Add the following to the dependencies of your `Package.swift`:
 
 ### Manual
 
-Download the files in the [Sources](https://github.com/FelixHerrmann/FHExtensions/tree/master/Sources) folder and drag them into you project.
+Download the [Sources](https://github.com/FelixHerrmann/FHExtensions/tree/master/Sources) folder and drag it into you project.
 
 
 ## Usage
 
-### [Array](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Array.swift)
+### [Array](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/Array.swift)
 
 #### `subscript(safe index: Index) -> Element?`
 
@@ -65,14 +65,14 @@ print(array) // [0, 1, 3]
 ```
 
 
-### [Bundle](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Bundle.swift)
+### [Bundle](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/Bundle.swift)
 
 #### `versionNumber`, `buildNumber`
 
 The values for the `CFBundleShortVersionString` and `CFBundleVersion` key in the info dictionary.
 
 
-### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CGRect.swift)
+### [CGRect](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/CoreGraphics/CGRect.swift)
 
 #### Coordinates: `x`, `y`, `top`, `bottom`, `left`, `right`, `center`
 
@@ -81,7 +81,7 @@ Convenience properties for `CGRect` coordinates.
 >These properties also contains setters which will recreate the frame entirely.
 
 
-### [Date](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Date.swift)
+### [Date](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/Date.swift)
 
 #### `init?(_:_:_:hour:minute:second:timeZone)`
 
@@ -95,7 +95,7 @@ let dateWithTimeAndTimeZone = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, 
 >The time values and time zone are optional.
 
 
-### [JSONDecoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONDecoder.swift)
+### [JSONDecoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/JSONDecoder.swift)
 
 #### `DateDecodingStrategy.iso8601withFractionalSeconds`
 
@@ -103,7 +103,7 @@ An ISO 8601 `DateDecodingStrategy` with fractional seconds.
 Something like `1999-02-23T09:41:00.000Z` will work with the decoder.
 
 
-### [JSONEncoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/JSONEncoder.swift)
+### [JSONEncoder](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/JSONEncoder.swift)
 
 #### `DateEncodingStrategy.iso8601withFractionalSeconds`
 
@@ -111,14 +111,14 @@ An ISO 8601 `DateEncodingStrategy` with fractional seconds.
 Something like `1999-02-23T09:41:00.000Z` will be the output from the encoder.
 
 
-### [String](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/String.swift)
+### [String](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/Foundation/String.swift)
 
 #### `capitalizedFirst`
 
 A copy of the string where the first letter is capitalized.
 
 
-### [UIColor](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIColor.swift)
+### [UIColor](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIKit/UIColor.swift)
 
 #### RGB: `red`, `green`, `blue`, `alpha`
 
@@ -144,7 +144,7 @@ print(hexString) // "#ffff00ff"
 ```
 
 
-### [UIDevice](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDevice.swift)
+### [UIDevice](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIKit/UIDevice.swift)
 
 #### `modelIdentifier`
 
@@ -153,7 +153,7 @@ With `UIDevice.current.modelIdentifier` you are able to get the model identifier
 >This works also on Mac (Catalyst).
 
 
-### [UIDirectionalPanGestureRecognizer](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIDirectionalPanGestureRecognizer.swift)
+### [UIDirectionalPanGestureRecognizer](https://github.com/FelixHerrmann/FHExtensions/blob/master/Sources/FHExtensions/UIKit/UIDirectionalPanGestureRecognizer.swift)
 
 A concrete subclass of **UIPanGestureRecognizer** that cancels if the specified direction does not match.
 
