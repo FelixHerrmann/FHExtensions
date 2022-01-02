@@ -5,7 +5,10 @@ extension UIDevice {
     
     /// Returns the model identifier of the current device.
     public var modelIdentifier: String {
-        #if targetEnvironment(macCatalyst)
+        if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            return simulatorModelIdentifier
+        }
+        
         var len = 0
         sysctlbyname("hw.model", nil, &len, nil, 0)
         var model: CChar = CChar(len * MemoryLayout.size(ofValue: Character.self))
