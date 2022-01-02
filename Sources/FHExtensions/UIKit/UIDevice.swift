@@ -8,21 +8,21 @@ extension UIDevice {
         if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             return simulatorModelIdentifier
         }
-        #if targetEnvironment(macCatalyst)
+        
         var len = 0
         sysctlbyname("hw.model", nil, &len, nil, 0)
-        var model: CChar = CChar(len * MemoryLayout.size(ofValue: Character.self))
-        sysctlbyname("hw.model", &model, &len, nil, 0)
-        return String(cString: &model)
-        #else
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        return machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
+        var modelPointer: CChar = CChar(len * MemoryLayout.size(ofValue: Character.self))
+        sysctlbyname("hw.model", &modelPointer, &len, nil, 0)
+        let model = String(cString: &modelPointer)
+        
+        if model.lowercased().contains("mac") {
+            return model
+        } else {
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            return String(decoding: Data(bytes: &systemInfo.machine, count: Int(_SYS_NAMELEN)), as: UTF8.self)
+                .trimmingCharacters(in: .controlCharacters)
         }
-        #endif
     }
 }
 
