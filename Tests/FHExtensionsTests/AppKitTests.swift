@@ -1,7 +1,7 @@
 import XCTest
 @testable import FHExtensions
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 import AppKit
 
 final class AppKitTests: XCTestCase {
@@ -32,4 +32,4 @@ final class AppKitTests: XCTestCase {
     }
 }
 
-#endif // canImport(AppKit)
+#endif // canImport(AppKit) && !targetEnvironment(macCatalyst)
