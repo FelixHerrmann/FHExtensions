@@ -2,6 +2,7 @@
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHExtensions%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHExtensions)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHExtensions%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHExtensions)
+[![Xcode Build](https://github.com/FelixHerrmann/FHExtensions/actions/workflows/xcodebuild.yml/badge.svg)](https://github.com/FelixHerrmann/FHExtensions/actions/workflows/xcodebuild.yml)
 [![Version](https://img.shields.io/github/v/release/FelixHerrmann/FHExtensions)](https://github.com/FelixHerrmann/FHExtensions/releases)
 [![License](https://img.shields.io/github/license/FelixHerrmann/FHExtensions)](https://github.com/FelixHerrmann/FHExtensions/blob/master/LICENSE)
 [![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHExtensions)
