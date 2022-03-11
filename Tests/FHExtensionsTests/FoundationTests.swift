@@ -44,7 +44,7 @@ final class FoundationTests: XCTestCase {
     func testDateEncodingDecodingStrategy() {
         guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)) else { return }
         
-        if #available(OSX 10.13, iOS 11.0, tvOS 11.0, *) {
+        if #available(macOS 10.13, iOS 11.0, tvOS 11.0, *) {
             let encoder = JSONEncoder()
             let decoder = JSONDecoder()
             

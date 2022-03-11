@@ -3,7 +3,7 @@ import Foundation
 extension JSONDecoder.DateDecodingStrategy {
     
     /// The strategy that formats dates according to the ISO 8601 standard with fractional seconds.
-    @available(OSX 10.13, iOS 11.0, tvOS 11.0, *)
+    @available(macOS 10.13, iOS 11.0, tvOS 11.0, *)
     public static let iso8601withFractionalSeconds = custom { decoder -> Date in
         let container = try decoder.singleValueContainer()
         let dateString = try container.decode(String.self)
