@@ -6,12 +6,11 @@ import AppKit
 
 final class AppKitTests: XCTestCase {
     
-    func testHexColor() {
-        guard let hex6With = NSColor(hex: "#80ff00"),
-              let hex6Without = NSColor(hex: "80ff00"),
-              let hex8With = NSColor(hex: "#80ff00ff"),
-              let hex8Without = NSColor(hex: "80ff00ff")
-        else { return }
+    func testHexColor() throws {
+        let hex6With = try XCTUnwrap(NSColor(hex: "#80ff00"))
+        let hex6Without = try XCTUnwrap(NSColor(hex: "80ff00"))
+        let hex8With = try XCTUnwrap(NSColor(hex: "#80ff00ff"))
+        let hex8Without = try XCTUnwrap(NSColor(hex: "80ff00ff"))
         
         for color in [hex6With, hex6Without, hex8With, hex8Without] {
             XCTAssertEqual(color.red, 0.5, accuracy: 0.01)

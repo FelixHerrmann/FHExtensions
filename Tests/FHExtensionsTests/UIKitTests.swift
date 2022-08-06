@@ -15,12 +15,11 @@ final class UIKitTests: XCTestCase {
         XCTAssertEqual(color.alpha, 0.5)
     }
     
-    func testHexColor() {
-        guard let hex6With = UIColor(hex: "#80ff00"),
-              let hex6Without = UIColor(hex: "80ff00"),
-              let hex8With = UIColor(hex: "#80ff00ff"),
-              let hex8Without = UIColor(hex: "80ff00ff")
-        else { return }
+    func testHexColor() throws {
+        let hex6With = try XCTUnwrap(UIColor(hex: "#80ff00"))
+        let hex6Without = try XCTUnwrap(UIColor(hex: "80ff00"))
+        let hex8With = try XCTUnwrap(UIColor(hex: "#80ff00ff"))
+        let hex8Without = try XCTUnwrap(UIColor(hex: "80ff00ff"))
         
         for color in [hex6With, hex6Without, hex8With, hex8Without] {
             XCTAssertEqual(color.red, 0.5, accuracy: 0.01)
@@ -41,7 +40,7 @@ final class UIKitTests: XCTestCase {
     }
     
     func testModelIdentifier() {
-        XCTAssertNotNil(UIDevice.current.modelIdentifier, "Found model identifier")
+        XCTAssertNotNil(UIDevice.current.modelIdentifier)
     }
 }
 

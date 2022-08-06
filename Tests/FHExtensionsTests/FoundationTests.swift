@@ -25,8 +25,8 @@ final class FoundationTests: XCTestCase {
         XCTAssertNotNil(bundle.versionNumber)
     }
     
-    func testDateInit() {
-        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)) else { return }
+    func testDateInit() throws {
+        let date = try XCTUnwrap(Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)))
         
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? .current
@@ -41,26 +41,23 @@ final class FoundationTests: XCTestCase {
         XCTAssertEqual(components.timeZone, TimeZone(secondsFromGMT: 0))
     }
     
-    func testDateEncodingDecodingStrategy() {
-        guard let date = Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)) else { return }
+    @available(macOS 10.13, iOS 11.0, tvOS 11.0, *)
+    func testDateEncodingDecodingStrategy() throws {
+        let date = try XCTUnwrap(Date(23, 2, 1999, hour: 9, minute: 41, second: 0, timeZone: TimeZone(secondsFromGMT: 0)))
         
-        if #available(macOS 10.13, iOS 11.0, tvOS 11.0, *) {
-            let encoder = JSONEncoder()
-            let decoder = JSONDecoder()
-            
-            encoder.dateEncodingStrategy = .iso8601withFractionalSeconds
-            decoder.dateDecodingStrategy = .iso8601withFractionalSeconds
-            
-            guard let data = try? encoder.encode(date) else { return }
-            
-            if let dateString = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? String {
-                XCTAssertEqual(dateString, "1999-02-23T09:41:00.000Z")
-            }
-            
-            if let decodedDate = try? decoder.decode(Date.self, from: data) {
-                XCTAssertEqual(decodedDate, date)
-            }
-        }
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+        
+        encoder.dateEncodingStrategy = .iso8601withFractionalSeconds
+        decoder.dateDecodingStrategy = .iso8601withFractionalSeconds
+        
+        let data = try encoder.encode(date)
+        
+        let dateString = try decoder.decode(String.self, from: data)
+        XCTAssertEqual(dateString, "1999-02-23T09:41:00.000Z")
+        
+        let decodedDate = try decoder.decode(Date.self, from: data)
+        XCTAssertEqual(decodedDate, date)
     }
     
     func testCapitalizeString() {
