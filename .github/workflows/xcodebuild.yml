@@ -43,7 +43,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - name: Build iOS
+      - name: Build tvOS
         run: xcodebuild -scheme FHExtensions -destination 'name=Apple TV'
-      - name: Run iOS tests
+      - name: Run tvOS tests
         run: xcodebuild -scheme FHExtensions -destination 'name=Apple TV' test
