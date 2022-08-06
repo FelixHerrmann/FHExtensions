@@ -11,16 +11,17 @@ extension UIDevice {
         
         var len = 0
         sysctlbyname("hw.model", nil, &len, nil, 0)
-        var modelPointer: CChar = CChar(len * MemoryLayout.size(ofValue: Character.self))
-        sysctlbyname("hw.model", &modelPointer, &len, nil, 0)
-        let model = String(cString: &modelPointer)
+        var modelBuffer = Array<CChar>(repeating: 0, count: len)
+        sysctlbyname("hw.model", &modelBuffer, &len, nil, 0)
+        let model = String(cString: modelBuffer)
         
         if model.lowercased().contains("mac") {
             return model
         } else {
             var systemInfo = utsname()
             uname(&systemInfo)
-            return String(decoding: Data(bytes: &systemInfo.machine, count: Int(_SYS_NAMELEN)), as: UTF8.self)
+            let data = Data(bytes: &systemInfo.machine, count: Int(_SYS_NAMELEN))
+            return String(decoding: data, as: UTF8.self)
                 .trimmingCharacters(in: .controlCharacters)
         }
     }
